@@ -1,8 +1,8 @@
 {
-  "name": "Vyra",
+  "name": "vyra-app",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Rayquen Development",
+  "homepage": "https://rayquen.com/vyra",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -50,5 +50,5 @@
     "tslint": "~6.1.0",
     "typescript": "~3.9.5"
   },
-  "description": "An Ionic project"
+  "description": "ERP by Vyra Project"
 }
