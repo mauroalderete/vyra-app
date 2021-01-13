@@ -23,7 +23,11 @@ export class LoginService {
 
       let sub = this.httpClient.post(
         'https://vyra.herokuapp.com/api/login',
-        session,
+        {
+          username: session.user,
+          password: session.password,
+          uid: 'vyraproject'
+        },
         {headers: headers}
       ).subscribe( response => {
         if ( 'token' in response ){
