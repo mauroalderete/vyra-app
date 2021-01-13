@@ -17,6 +17,7 @@ export class LoginPage implements OnInit {
 
   constructor(
     private loadingController: LoadingController,
+    private alertController: AlertController,
     private loginStore: LoginStore
   ) { }
 
@@ -59,13 +60,29 @@ export class LoginPage implements OnInit {
         console.log('[Login::Login] Redireccionadno...')
         loading.dismiss()
         //redireccionamiento
-      }, reason => {
+      }, async reason => {
         console.error('[Login::Login] ', reason)
         loading.dismiss()
+
+        const alert = await this.alertController.create({
+          header: 'Error',
+          message: reason,
+          buttons: ['OK']
+        });
+    
+        await alert.present();
         //mostrar error
-      }, () => {
+      }, async () => {
         console.error('[Login::Login] Completado')
         loading.dismiss()
+
+        const alert = await this.alertController.create({
+          header: 'Error',
+          message: 'Pasó algo raro... llamar a desarrollo',
+          buttons: ['OK']
+        });
+    
+        await alert.present();
         //mostrar otra clase de error
       } )
     } )
