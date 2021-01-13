@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>VYRA PROJECT
+      <ion-note>
+        by rayquendev
+      </ion-note>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid class="ion-text-centered" style="height: 100%">
+    <ion-row style="height: 100%; justify-content: center; display: flex; align-items: center;">
+      <ion-col style="align-items: center; text-align: center; align-content: center;">
+        <ion-card class="login-box">
+          <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <ion-item color="transparent" lines="none">
+              <ion-icon name="person-outline" md="person-outline" slot="start"></ion-icon>
+              <ion-label position="floating" color="secondary">Usuario</ion-label>
+              <ion-input formControlName="user" type="text" clearInput="clearInput"></ion-input>
+            </ion-item>
+            <ion-item color="transparent" lines="none">
+              <ion-icon md="key-outline" slot="start"></ion-icon>
+              <ion-label position="floating" color="primary">Password</ion-label>
+              <ion-input formControlName="password" type="password" clearInput="clearInput"></ion-input>
+            </ion-item>
+          </form>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-fab style="margin-bottom: 10vh;" vertical="bottom" horizontal="center">
+    <ion-fab-button color="primary" type="submit" [disabled]="!loginForm.valid" (click)="login()">
+      <ion-icon name="chevron-forward-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
