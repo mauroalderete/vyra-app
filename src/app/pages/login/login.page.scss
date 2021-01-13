@@ -1,0 +1,16 @@
+.login-box{
+    background-color: #0a7fdf75;
+    padding: 2ch;
+    width: 250px;
+    border-radius: 50px;
+    margin: auto !important;
+
+    ion-label {
+        color: lightgray;
+    }
+
+    ion-card-content {
+        padding-top: 3vh;
+        padding-bottom: 6vh;
+    }
+}
