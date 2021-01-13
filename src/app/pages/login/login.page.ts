@@ -57,12 +57,15 @@ export class LoginPage implements OnInit {
       this.loginSubscription = this.loginStore.login(session).subscribe( token => {
         console.log('[Login::Login] Ok')
         console.log('[Login::Login] Redireccionadno...')
+        loading.dismiss()
         //redireccionamiento
       }, reason => {
         console.error('[Login::Login] ', reason)
+        loading.dismiss()
         //mostrar error
       }, () => {
-        console.log('[Login::Login] Completado')
+        console.error('[Login::Login] Completado')
+        loading.dismiss()
         //mostrar otra clase de error
       } )
     } )
