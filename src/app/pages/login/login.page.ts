@@ -31,6 +31,7 @@ export class LoginPage implements OnInit {
   
   login(){
 
+    console.log('[Login::Login] Start')
     let loadingPromise = this.loadingController.create({
       spinner: "bubbles",
       translucent: true,
@@ -40,11 +41,11 @@ export class LoginPage implements OnInit {
 
     loadingPromise.then( loading =>{
       loading.present().then( () => {
-        console.log('ready')
+        console.log('[Login::Login] ready')
       } )
 
       loading.onDidDismiss().then( data => {
-        console.log('dismiss: ', data)
+        console.log('[Login::Login] dismiss: ', data)
         this.loginSubscription?.unsubscribe()
       })
 
@@ -54,16 +55,17 @@ export class LoginPage implements OnInit {
       }
 
       this.loginSubscription = this.loginStore.login(session).subscribe( token => {
-        console.log('[login::login]Ok')
+        console.log('[Login::Login] Ok')
+        console.log('[Login::Login] Redireccionadno...')
         //redireccionamiento
       }, reason => {
-        console.error('[Login::Login]', reason)
+        console.error('[Login::Login] ', reason)
         //mostrar error
       }, () => {
-        console.log('[login::login]Completado')
+        console.log('[Login::Login] Completado')
         //mostrar otra clase de error
       } )
     } )
-    console.log('login')
+    console.log('[Login::Login] End')
   }
 }
