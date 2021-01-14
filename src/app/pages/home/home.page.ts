@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router'
+import { LoginStore } from '../../stores/login.store'
+
 
 @Component({
   selector: 'app-home',
@@ -7,6 +10,15 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(
+    private router: Router,
+    private loginStore: LoginStore
+  ) {}
+
+  logout(){
+    this.loginStore.logout().then( () => {
+      this.router.navigate(['/'])
+    } )
+  }
 
 }
