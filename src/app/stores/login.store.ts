@@ -24,9 +24,16 @@ export class LoginStore {
 
       this.loginService.login( session ).subscribe( token => {
 
+        this.token$.next(token)
+        this.logged$.next(true)
+
         observer.next(token)
 
       }, reason => {
+        
+        this.token$.next('')
+        this.logged$.next(false)
+
         observer.error(reason)
       } )
 
@@ -35,6 +42,15 @@ export class LoginStore {
           console.log('[loginStore::login] Terminando')
         }
       }
+    } )
+  }
+
+  logout() : Promise<void>{
+    return new Promise( (resolve, reject) => {
+      this.token$.next('')
+      this.logged$.next(false)
+
+      resolve()
     } )
   }
 }

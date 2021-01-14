@@ -1,5 +1,7 @@
+import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router'
 import { AlertController, LoadingController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { ISession } from 'src/app/models/session.model';
@@ -16,6 +18,7 @@ export class LoginPage implements OnInit {
   loginSubscription: Subscription = null
 
   constructor(
+    private router: Router,
     private loadingController: LoadingController,
     private alertController: AlertController,
     private loginStore: LoginStore
@@ -58,7 +61,9 @@ export class LoginPage implements OnInit {
       this.loginSubscription = this.loginStore.login(session).subscribe( token => {
         console.log('[Login::Login] Ok')
         console.log('[Login::Login] Redireccionadno...')
-        loading.dismiss()
+        loading.dismiss().then( ()=> {
+          this.router.navigate(['/home'])
+        } )
         //redireccionamiento
       }, async reason => {
         console.error('[Login::Login] ', reason)
