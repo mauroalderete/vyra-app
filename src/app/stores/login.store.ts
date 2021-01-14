@@ -44,4 +44,13 @@ export class LoginStore {
       }
     } )
   }
+
+  logout() : Promise<void>{
+    return new Promise( (resolve, reject) => {
+      this.token$.next('')
+      this.logged$.next(false)
+
+      resolve()
+    } )
+  }
 }
