@@ -24,9 +24,16 @@ export class LoginStore {
 
       this.loginService.login( session ).subscribe( token => {
 
+        this.token$.next(token)
+        this.logged$.next(true)
+
         observer.next(token)
 
       }, reason => {
+        
+        this.token$.next('')
+        this.logged$.next(false)
+
         observer.error(reason)
       } )
 
