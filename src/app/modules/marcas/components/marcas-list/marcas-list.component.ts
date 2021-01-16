@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MarcasStore } from '../../stores/marcas.store';
 
 @Component({
   selector: 'app-marcas-list',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MarcasListComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private marcasStore: MarcasStore
+  ) { }
 
   ngOnInit() {}
 

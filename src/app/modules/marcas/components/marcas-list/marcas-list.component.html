@@ -1,3 +1,11 @@
 <p>
   marcas-list works!
+
+  <ion-list>
+    <ion-item ngFor="let marca of marcasStore.marcas | async">
+      <ion-label>nombre</ion-label>
+    </ion-item>
+  </ion-list>
+  
+
 </p>
