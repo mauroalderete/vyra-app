@@ -13,8 +13,8 @@ import { environment } from '../environments/environment';
 
 import { LoginService } from '../app/services/login.service'
 import { LoginStore } from '../app/stores/login.store'
-import { MarcasService } from '../app/services/marcas.service'
-import { MarcasStore } from '../app/stores/marcas.store'
+import { MarcasService } from './modules/marcas/services/marcas.service'
+import { MarcasStore } from './modules/marcas/stores/marcas.store'
 
 @NgModule({
   declarations: [AppComponent],
