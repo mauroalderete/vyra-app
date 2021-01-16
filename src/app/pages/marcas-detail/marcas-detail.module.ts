@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MarcasEditPageRoutingModule } from './marcas-edit-routing.module';
+import { MarcasDetailPageRoutingModule } from './marcas-detail-routing.module';
 
-import { MarcasEditPage } from './marcas-edit.page';
+import { MarcasDetailPage } from './marcas-detail.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MarcasEditPageRoutingModule
+    MarcasDetailPageRoutingModule
   ],
-  declarations: [MarcasEditPage]
+  declarations: [MarcasDetailPage]
 })
-export class MarcasEditPageModule {}
+export class MarcasDetailPageModule {}

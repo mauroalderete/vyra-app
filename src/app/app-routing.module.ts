@@ -23,8 +23,8 @@ const routes: Routes = [
     canActivate: [LoggedGuard]
   },
   {
-    path: 'marcas-edit',
-    loadChildren: () => import('./pages/marcas-detail/marcas-detail.module').then( m => m.MarcasEditPageModule),
+    path: 'marcas-detail',
+    loadChildren: () => import('./pages/marcas-detail/marcas-detail.module').then( m => m.MarcasDetailPageModule),
     canActivate: [LoggedGuard]
   },
   {
