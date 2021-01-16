@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content>
-  <app-marcas-list></app-marcas-list>
+  <app-marcas-list (onEdited)="toEdit($event)" (onSelected)="toSelect($event)" ></app-marcas-list>
 
   <ion-fab horizontal="end" vertical="bottom">
     <ion-fab-button color="primary" routerLink="/marcas-add">

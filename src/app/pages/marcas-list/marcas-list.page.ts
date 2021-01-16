@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IMarca } from 'src/app/modules/marcas/models/marca.model';
+import { Router  } from "@angular/router";
 
 @Component({
   selector: 'page-marcas-list',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MarcasListPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
+  }
+
+  toEdit(marca: IMarca){
+    this.router.navigate(['/marcas-add'], {state: {edit: marca}})
+  }
+
+  toSelect(marca: IMarca){
+    console.info('Marca seleccionada: ', marca)
   }
 
 }
