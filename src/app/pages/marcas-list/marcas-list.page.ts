@@ -17,7 +17,7 @@ export class MarcasListPage implements OnInit {
   }
 
   toEdit(marca: IMarca){
-    this.router.navigate(['/marcas-add'], {state: {edit: marca}})
+    this.router.navigate(['/marcas-form'], {state: {edit: marca}})
   }
 
   toSelect(marca: IMarca){

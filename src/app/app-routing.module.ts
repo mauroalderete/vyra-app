@@ -24,12 +24,12 @@ const routes: Routes = [
   },
   {
     path: 'marcas-edit',
-    loadChildren: () => import('./pages/marcas-edit/marcas-edit.module').then( m => m.MarcasEditPageModule),
+    loadChildren: () => import('./pages/marcas-detail/marcas-detail.module').then( m => m.MarcasEditPageModule),
     canActivate: [LoggedGuard]
   },
   {
-    path: 'marcas-add',
-    loadChildren: () => import('./pages/marcas-add/marcas-add.module').then( m => m.MarcasAddPageModule),
+    path: 'marcas-form',
+    loadChildren: () => import('./pages/marcas-form/marcas-form.module').then( m => m.MarcasFormPageModule),
     canActivate: [LoggedGuard]
   }
 ];

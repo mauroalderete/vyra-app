@@ -7,11 +7,11 @@ import { IMarca } from 'src/app/modules/marcas/models/marca.model';
 import { MarcasStore } from 'src/app/modules/marcas/stores/marcas.store';
 
 @Component({
-  selector: 'page-marcas-add',
-  templateUrl: './marcas-add.page.html',
-  styleUrls: ['./marcas-add.page.scss'],
+  selector: 'page-marcas-form',
+  templateUrl: './marcas-form.page.html',
+  styleUrls: ['./marcas-form.page.scss'],
 })
-export class MarcasAddPage implements OnInit {
+export class MarcasFormPage implements OnInit {
 
   addForm: FormGroup
   saveSub: Subscription

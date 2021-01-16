@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MarcasAddPageRoutingModule } from './marcas-add-routing.module';
+import { MarcasFormPageRoutingModule } from './marcas-form-routing.module';
 
-import { MarcasAddPage } from './marcas-add.page';
+import { MarcasFormPage } from './marcas-form.page';
 
 @NgModule({
   imports: [
@@ -14,8 +14,8 @@ import { MarcasAddPage } from './marcas-add.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    MarcasAddPageRoutingModule
+    MarcasFormPageRoutingModule
   ],
-  declarations: [MarcasAddPage]
+  declarations: [MarcasFormPage]
 })
-export class MarcasAddPageModule {}
+export class MarcasFormPageModule {}
