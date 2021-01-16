@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-marcas-edit',
+  selector: 'page-marcas-edit',
   templateUrl: './marcas-edit.page.html',
   styleUrls: ['./marcas-edit.page.scss'],
 })
