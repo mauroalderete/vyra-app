@@ -13,6 +13,7 @@ export class MarcasStore implements OnDestroy{
 
   private getSub: Subscription
   private addSub: Subscription
+  private delSub: Subscription
 
   constructor(
     private marcasService: MarcasService
@@ -23,6 +24,7 @@ export class MarcasStore implements OnDestroy{
   ngOnDestroy(){
     this.getSub?.unsubscribe()
     this.addSub?.unsubscribe()
+    this.delSub?.unsubscribe()
   }
 
   private loadInitialData(){
@@ -66,6 +68,32 @@ export class MarcasStore implements OnDestroy{
       return {
         unsubscribe(){
           this.addSub?.unsubscribe()
+        }
+      }
+    } )
+  }
+
+  public delete(marca: IMarca) : Observable<null>{
+    return new Observable( observer => {
+
+      this.delSub = this.marcasService.delete( marca ).subscribe( ()=>{
+        let m : IMarca = marca
+        let mm : IMarca[] = this.marcas$.getValue()
+        let index: number = this.marcas$.getValue().indexOf( marca )
+        if( index >= 0){
+          let mm : IMarca[] = this.marcas$.getValue()
+          mm.splice(index,1)
+          this.marcas$.next( mm )
+        }
+        
+        observer.next()
+      }, error => {
+        observer.error(error)
+      } )
+
+      return {
+        unsubscribe(){
+          this.delSub?.unsubscribe()
         }
       }
     } )
