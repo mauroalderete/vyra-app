@@ -17,9 +17,7 @@ export class MarcasService implements OnInit, OnDestroy{
   constructor(
     private httpClient: HttpClient,
     private loginStore: LoginStore
-  ) { }
-
-  ngOnInit() {
+  ) {
     this.tokenSub = this.loginStore.token.subscribe( token => {
       this.token = token
     } )
