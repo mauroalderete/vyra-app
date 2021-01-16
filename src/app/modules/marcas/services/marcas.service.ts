@@ -29,8 +29,8 @@ export class MarcasService implements OnInit, OnDestroy{
     this.tokenSub.unsubscribe()
   }
 
-  get()
-  get(marca?: number | IMarca){
+  get() : Observable<any>
+  get(marca?: number | IMarca) : Observable<any>{
     
     console.log('[MarcasService::get] ', marca)
 
