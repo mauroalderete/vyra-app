@@ -21,7 +21,7 @@ export class MarcasListPage implements OnInit {
   }
 
   toSelect(marca: IMarca){
-    console.info('Marca seleccionada: ', marca)
+    this.router.navigate(['/marcas-detail'], {state: {detail: marca}})
   }
 
 }
