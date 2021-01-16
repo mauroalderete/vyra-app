@@ -57,6 +57,23 @@ export class MarcasService implements OnDestroy{
       {headers: headers})
   }
 
+  update(marca: IMarca) : Observable<any>{
+    const headers = new HttpHeaders({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + this.token
+    });
+
+    return this.httpClient.put(
+      `${environment.API_URL}/marcas/${marca.marca}`,
+      {
+        marca: marca.marca,
+        nombre: marca.nombre,
+        notas: marca.notas
+      },
+      {headers: headers})
+  }
+
   delete(marca: IMarca) : Observable<any>{
     const headers = new HttpHeaders({
       'Accept': 'application/json',
