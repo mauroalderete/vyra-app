@@ -14,6 +14,7 @@ export class MarcasStore implements OnDestroy{
   private getSub: Subscription
   private addSub: Subscription
   private delSub: Subscription
+  private updateSub: Subscription
 
   constructor(
     private marcasService: MarcasService
@@ -25,11 +26,11 @@ export class MarcasStore implements OnDestroy{
     this.getSub?.unsubscribe()
     this.addSub?.unsubscribe()
     this.delSub?.unsubscribe()
+    this.updateSub?.unsubscribe()
   }
 
   private loadInitialData(){
     this.getSub = this.marcasService.get().subscribe( marcas => {
-      //mapeo
 
       let m : IMarca[] = marcas
 
@@ -73,13 +74,46 @@ export class MarcasStore implements OnDestroy{
     } )
   }
 
+  public update(marca: IMarca) : Observable<IMarca> {
+
+    return new Observable( observer => {
+
+      this.updateSub = this.marcasService.update( marca ).subscribe( result=>{
+        let updated : IMarca = result
+        let index: number = this.marcas$.getValue().findIndex( m => m.marca == marca.marca )
+
+        if( index >= 0){
+          let marcas : IMarca[] = this.marcas$.getValue()
+
+          marcas.splice(index,1,updated)
+
+          marcas.sort( (a,b)=> {
+            return a.nombre.toUpperCase() < b.nombre.toUpperCase() ? -1:1
+          })
+
+          this.marcas$.next( marcas )
+        }
+
+        observer.next(updated)
+      }, error => {
+        observer.error(error)
+      } )
+
+      return {
+        unsubscribe(){
+          this.updateSub?.unsubscribe()
+        }
+      }
+    } )
+  }
+
   public delete(marca: IMarca) : Observable<null>{
     return new Observable( observer => {
 
       this.delSub = this.marcasService.delete( marca ).subscribe( ()=>{
         let m : IMarca = marca
-        let mm : IMarca[] = this.marcas$.getValue()
-        let index: number = this.marcas$.getValue().indexOf( marca )
+
+        let index: number = this.marcas$.getValue().indexOf( m )
         if( index >= 0){
           let mm : IMarca[] = this.marcas$.getValue()
           mm.splice(index,1)
