@@ -9,7 +9,7 @@ import { LoginStore  } from "../../../stores/login.store";
 @Injectable({
   providedIn: 'root'
 })
-export class MarcasService implements OnInit, OnDestroy{
+export class MarcasService implements OnDestroy{
 
   token : string
   tokenSub: Subscription
