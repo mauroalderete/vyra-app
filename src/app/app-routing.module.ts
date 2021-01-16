@@ -16,19 +16,22 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
     canActivate: [LoggedGuard]
-  },  {
+  },
+  {
     path: 'marcas-list',
-    loadChildren: () => import('./pages/marcas-list/marcas-list.module').then( m => m.MarcasListPageModule)
+    loadChildren: () => import('./pages/marcas-list/marcas-list.module').then( m => m.MarcasListPageModule),
+    canActivate: [LoggedGuard]
   },
   {
     path: 'marcas-edit',
-    loadChildren: () => import('./pages/marcas-edit/marcas-edit.module').then( m => m.MarcasEditPageModule)
+    loadChildren: () => import('./pages/marcas-edit/marcas-edit.module').then( m => m.MarcasEditPageModule),
+    canActivate: [LoggedGuard]
   },
   {
     path: 'marcas-add',
-    loadChildren: () => import('./pages/marcas-add/marcas-add.module').then( m => m.MarcasAddPageModule)
+    loadChildren: () => import('./pages/marcas-add/marcas-add.module').then( m => m.MarcasAddPageModule),
+    canActivate: [LoggedGuard]
   }
-
 ];
 
 @NgModule({
