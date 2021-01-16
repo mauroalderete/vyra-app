@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  API_DEV: "http://localhost:5000",
+  API_PROD: "https://vyra.herokuapp.com/api",
+  API_URL: "http://localhost:5000/api"
 };
 
 /*
