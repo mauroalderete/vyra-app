@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Marca nueva</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="addForm" (ngSubmit)="save()">
+    <ion-card>
+      <ion-card-content>
+        <ion-item lines="none" color="transparent">
+          <ion-label position="floating" color="tertiary">Nombre</ion-label>
+          <ion-input formControlName="nombre" type="text" clearInput="clearInput"></ion-input>
+        </ion-item>
+        <ion-item lines="none" color="transparent">
+          <ion-label position="floating" color="tertiary">Notas</ion-label>
+          <ion-input formControlName="notas" type="text" clearInput="clearInput"></ion-input>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button [disabled]="!addForm.valid" (click)="save()">
+        <ion-icon name="bookmark-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+  </form>
+</ion-content>

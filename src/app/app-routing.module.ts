@@ -16,6 +16,21 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
     canActivate: [LoggedGuard]
+  },
+  {
+    path: 'marcas-list',
+    loadChildren: () => import('./pages/marcas-list/marcas-list.module').then( m => m.MarcasListPageModule),
+    canActivate: [LoggedGuard]
+  },
+  {
+    path: 'marcas-detail',
+    loadChildren: () => import('./pages/marcas-detail/marcas-detail.module').then( m => m.MarcasDetailPageModule),
+    canActivate: [LoggedGuard]
+  },
+  {
+    path: 'marcas-form',
+    loadChildren: () => import('./pages/marcas-form/marcas-form.module').then( m => m.MarcasFormPageModule),
+    canActivate: [LoggedGuard]
   }
 ];
 

@@ -1,0 +1,26 @@
+<p>
+  <ion-list>
+    <ion-item-sliding  *ngFor="let marca of marcasStore.marcas | async">
+      <ion-item-options side="start">
+        <ion-item-option color="danger" (click)="delete(marca)" >
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+
+      <ion-item (click)="select(marca)" >
+        <ion-label>
+          {{marca.nombre}}
+        </ion-label>
+        <ion-chip slot="end" color="secondary">
+          <ion-label color="dark">{{marca.marca}}</ion-label>
+        </ion-chip>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="primary" (click)="edit(marca)">
+          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</p>

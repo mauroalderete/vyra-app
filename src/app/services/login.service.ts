@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http'
 import { ISession } from '../models/session.model';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class LoginService {
       headers.append('Content-Type', 'application/json')
 
       let sub = this.httpClient.post(
-        'https://vyra.herokuapp.com/api/login',
+        `${environment.API_URL}/login`,
         {
           username: session.user,
           password: session.password,

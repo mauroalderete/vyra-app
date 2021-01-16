@@ -31,6 +31,13 @@ export class LoginPage implements OnInit {
       user: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
     })
+
+    this.loginForm.setValue( {
+      user: 'mauro',
+      password: '123'
+    } )
+
+    this.login()
   }
   
   login(){

@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="primary">
+      <ion-button routerLink="/home">
+        <ion-icon slot="icon-only" name="home-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Marcas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-marcas-list (onEdited)="toEdit($event)" (onSelected)="toSelect($event)" ></app-marcas-list>
+
+  <ion-fab horizontal="end" vertical="bottom">
+    <ion-fab-button color="primary" routerLink="/marcas-form">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
