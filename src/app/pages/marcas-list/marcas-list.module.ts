@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { MarcasListPageRoutingModule } from './marcas-list-routing.module';
 
 import { MarcasListPage } from './marcas-list.page';
-import { MarcasListComponent } from 'src/app/componentes/marcas/marcas-list/marcas-list.component';
+import { MarcasListComponent } from 'src/app/modules/marcas/components/marcas-list/marcas-list.component';
 
 @NgModule({
   imports: [
