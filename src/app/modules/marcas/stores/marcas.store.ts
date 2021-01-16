@@ -31,6 +31,10 @@ export class MarcasStore implements OnDestroy{
 
       let m : IMarca[] = marcas
 
+      m.sort( (a,b)=> {
+        return a.nombre.toUpperCase() < b.nombre.toUpperCase() ? -1:1
+      })
+
       console.log('[MarcasStore::get] ok: ', m)
       this.marcas$.next( m )
 
@@ -47,6 +51,11 @@ export class MarcasStore implements OnDestroy{
         let m : IMarca = marca
         let mm : IMarca[] = this.marcas$.getValue()
         mm.push(m)
+
+        mm.sort( (a,b)=> {
+          return a.nombre.toUpperCase() < b.nombre.toUpperCase() ? -1:1
+        })
+
         this.marcas$.next( mm )
 
         observer.next(m)
