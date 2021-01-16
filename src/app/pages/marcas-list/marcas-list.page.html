@@ -1,9 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>marcas-list</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button routerLink="/home">
+        <ion-icon slot="icon-only" name="home-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Marcas</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <app-marcas-list></app-marcas-list>
 </ion-content>
