@@ -11,8 +11,8 @@ import { LoginStore  } from "../../../stores/login.store";
 })
 export class MarcasService implements OnDestroy{
 
-  token : string
-  tokenSub: Subscription
+  private token : string
+  private tokenSub: Subscription
 
   constructor(
     private httpClient: HttpClient,
@@ -39,6 +39,22 @@ export class MarcasService implements OnDestroy{
     });
 
     return this.httpClient.get(`${environment.API_URL}/marcas${marca? (marca['marca']? marca['marca'] : marca) : ''}`, {headers: headers})
+  }
+
+  add(marca: IMarca) : Observable<any>{
+    const headers = new HttpHeaders({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + this.token
+    });
+
+    return this.httpClient.post(
+      `${environment.API_URL}/marcas`,
+      {
+        nombre: marca.nombre,
+        notas: marca.notas
+      },
+      {headers: headers})
   }
 
 }
