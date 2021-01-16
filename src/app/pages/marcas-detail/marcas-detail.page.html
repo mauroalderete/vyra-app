@@ -1,9 +1,38 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>marcas-detail</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{marca?.nombre}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Marca</ion-card-subtitle>
+      <ion-card-title>{{marca?.nombre}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-note slot="start">Codigo</ion-note>
+        <ion-text>{{marca?.marca}}</ion-text>
+      </ion-item>
+      
+      <ion-item>
+        <ion-grid style="padding-left: 0; padding-right: 0;">
+          <ion-row>
+            <ion-col style="padding-left: 0; padding-right: 0;"> 
+              <ion-note>Notas</ion-note>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col style="padding-left: 0; padding-right: 0;">
+              <ion-text>{{marca?.notas}}</ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
