@@ -3,12 +3,17 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>{{marca?.nombre}}</ion-title>
+    <ion-title>Detalle</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="'/marcas-form'" [state]="{ edit: marca }">
+        <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+      </ion-button>      
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card>
+  <ion-card *ngIf="marca; else NotFoundBlock">
     <ion-card-header>
       <ion-card-subtitle>Marca</ion-card-subtitle>
       <ion-card-title>{{marca?.nombre}}</ion-card-title>
@@ -35,4 +40,18 @@
       </ion-item>
     </ion-card-content>
   </ion-card>
+  <ng-template #NotFoundBlock>
+    <div style="
+      text-align: center;
+      margin: 0px auto;
+      height: 100%;
+      display: flex!important;
+      align-items: center!important;">
+      <div style="width: 100%;">
+        <ion-icon name="skull" color="dark" size="large"></ion-icon>
+        <p>¡ Error Letal ! <br><br> La marca ya no esta entre nosotros</p>
+      </div>
+    </div>
+    
+  </ng-template>
 </ion-content>
