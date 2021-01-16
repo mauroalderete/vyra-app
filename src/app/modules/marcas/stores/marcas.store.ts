@@ -11,7 +11,8 @@ export class MarcasStore implements OnDestroy{
   private marcas$: BehaviorSubject<IMarca[]> = new BehaviorSubject([])
   public readonly marcas : Observable<IMarca[]> = this.marcas$.asObservable()
 
-  private marcasSub: Subscription
+  private getSub: Subscription
+  private addSub: Subscription
 
   constructor(
     private marcasService: MarcasService
@@ -20,11 +21,12 @@ export class MarcasStore implements OnDestroy{
   }
 
   ngOnDestroy(){
-    this.marcasSub?.unsubscribe()
+    this.getSub?.unsubscribe()
+    this.addSub?.unsubscribe()
   }
 
   private loadInitialData(){
-    this.marcasSub = this.marcasService.get().subscribe( marcas => {
+    this.getSub = this.marcasService.get().subscribe( marcas => {
       //mapeo
 
       let m : IMarca[] = marcas
@@ -32,13 +34,37 @@ export class MarcasStore implements OnDestroy{
       console.log('[MarcasStore::get] ok: ', m)
       this.marcas$.next( m )
 
-      // let todos = (<Object[]>res.json()).map((todo: any) =>
-      //                   new Todo({id:todo.id, description:todo.description,completed: todo.completed}));
-
-      // this._todos.next(List(todos));
-
     }, error => {
       console.error('[MarcasStore::get] ', error)
+    } )
+  }
+
+  public add(marca: IMarca) : Observable<IMarca> {
+
+    return new Observable( observer => {
+
+      this.addSub = this.marcasService.add( marca ).subscribe( marca=>{
+        let m : IMarca = marca
+        let mm : IMarca[] = this.marcas$.getValue()
+        mm.push(m)
+        this.marcas$.next( mm )
+
+        observer.next(m)
+      }, error => {
+        observer.error(error)
+      } )
+
+      return {
+        unsubscribe(){
+          this.addSub?.unsubscribe()
+        }
+      }
+    } )
+  }
+
+  private updateStore(){
+    this.marcasService.get().toPromise().then( marcas => {
+
     } )
   }
   
