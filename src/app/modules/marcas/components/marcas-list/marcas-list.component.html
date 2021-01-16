@@ -7,7 +7,7 @@
         </ion-item-option>
       </ion-item-options>
 
-      <ion-item>
+      <ion-item (click)="select(marca)" >
         <ion-label>
           {{marca.nombre}}
         </ion-label>
@@ -17,7 +17,7 @@
       </ion-item>
 
       <ion-item-options side="end">
-        <ion-item-option color="primary">
+        <ion-item-option color="primary" (click)="edit(marca)">
           <ion-icon slot="icon-only" name="create-outline"></ion-icon>
         </ion-item-option>
       </ion-item-options>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { IMarca } from '../../models/marca.model';
@@ -11,6 +11,10 @@ import { MarcasStore } from '../../stores/marcas.store';
 })
 export class MarcasListComponent implements OnInit {
 
+  @Output() onDeleted = new EventEmitter<IMarca>()
+  @Output() onEdited = new EventEmitter<IMarca>()
+  @Output() onSelected = new EventEmitter<IMarca>()
+
   delSub: Subscription
 
   constructor(
@@ -20,6 +24,14 @@ export class MarcasListComponent implements OnInit {
   ) { }
 
   ngOnInit() {}
+
+  select(marca: IMarca){
+    this.onSelected.emit(marca)
+  }
+
+  edit(marca: IMarca){
+    this.onEdited.emit(marca)
+  }
 
   delete(marca: IMarca){
     let loadingControl = this.loadingController.create({
@@ -38,6 +50,9 @@ export class MarcasListComponent implements OnInit {
 
       this.delSub = this.marcasStore.delete( marca ).subscribe( () => {
         loading.dismiss().then()
+
+        this.onDeleted.emit(marca)
+
       }, async error => {
         console.error('[Login::Login] ', error)
         loading.dismiss()
