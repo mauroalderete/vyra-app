@@ -13,6 +13,8 @@ import { environment } from '../environments/environment';
 
 import { LoginService } from '../app/services/login.service'
 import { LoginStore } from '../app/stores/login.store'
+import { MarcasService } from '../app/services/marcas.service'
+import { MarcasStore } from '../app/stores/marcas.store'
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,6 +31,8 @@ import { LoginStore } from '../app/stores/login.store'
     SplashScreen,
     LoginService,
     LoginStore,
+    MarcasService,
+    MarcasStore,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
