@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {Location} from '@angular/common';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { IMarca } from 'src/app/modules/marcas/models/marca.model';
 import { MarcasStore } from 'src/app/modules/marcas/stores/marcas.store';
@@ -14,7 +14,8 @@ import { MarcasStore } from 'src/app/modules/marcas/stores/marcas.store';
 export class MarcasAddPage implements OnInit {
 
   addForm: FormGroup
-  addSub: Subscription
+  saveSub: Subscription
+  marcaToEdit: IMarca
 
   constructor(
     private location: Location,
@@ -22,6 +23,8 @@ export class MarcasAddPage implements OnInit {
     private alertController: AlertController,
     private marcasStore: MarcasStore
   ) {
+    this.marcaToEdit = null
+
     let formBuilder = new FormBuilder()
 
     this.addForm = formBuilder.group({
@@ -31,6 +34,18 @@ export class MarcasAddPage implements OnInit {
   }
 
   ngOnInit() {
+
+    if ('edit' in history.state){
+      this.marcaToEdit = history.state['edit']
+
+      this.addForm.patchValue( {
+        nombre: this.marcaToEdit.nombre,
+        notas: this.marcaToEdit.notas
+      })
+
+    } else {
+      this.marcaToEdit = null
+    }
   }
 
   save(){
@@ -45,16 +60,23 @@ export class MarcasAddPage implements OnInit {
       loading.present().then()
 
       loading.onDidDismiss().then( data => {
-        this.addSub?.unsubscribe()
+        this.saveSub?.unsubscribe()
       })
 
       let marca : IMarca = {
-        marca: 0,
+        marca: this.marcaToEdit? this.marcaToEdit.marca : 0,
         nombre: this.addForm.value.nombre,
         notas: this.addForm.value.notas
       }
 
-      this.addSub = this.marcasStore.add( marca ).subscribe( marca => {
+      let call : any
+      if( this.marcaToEdit ){
+        call = this.marcasStore.update( marca )
+      } else {
+        call = this.marcasStore.add( marca )
+      }
+
+      this.saveSub = call.subscribe( marca => {
         loading.dismiss().then( ()=> {
           this.location.back()
         })
@@ -81,6 +103,5 @@ export class MarcasAddPage implements OnInit {
         await alert.present();
       } )
     } )
-
   }
 }
