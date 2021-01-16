@@ -16,7 +16,19 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
     canActivate: [LoggedGuard]
+  },  {
+    path: 'marcas-list',
+    loadChildren: () => import('./pages/marcas-list/marcas-list.module').then( m => m.MarcasListPageModule)
+  },
+  {
+    path: 'marcas-edit',
+    loadChildren: () => import('./pages/marcas-edit/marcas-edit.module').then( m => m.MarcasEditPageModule)
+  },
+  {
+    path: 'marcas-add',
+    loadChildren: () => import('./pages/marcas-add/marcas-add.module').then( m => m.MarcasAddPageModule)
   }
+
 ];
 
 @NgModule({
